@@ -18,7 +18,7 @@ class DropDown extends Component {
 			<div className={cn(s.dropDownContainer, className)}
 					 tabIndex="0"
 					 onBlur={this.toggleDropDown}
-					 onClick={this.toggleDropDown}>
+					 onFocus={this.toggleDropDown}>
 				{children}
 				{
 					isOpen
