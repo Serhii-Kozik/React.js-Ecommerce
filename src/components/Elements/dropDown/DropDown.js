@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import cn from 'classnames';
 import s from './dropdownStyle.less';
+import { Link } from 'preact-router';
 
 class DropDown extends Component {
 	constructor(props) {
@@ -9,8 +10,8 @@ class DropDown extends Component {
 	}
 
 	toggleDropDown = () => {
-		this.setState({ isOpen: !this.state.isOpen });
-	}
+		this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
+	};
 
 	toggleOff = () => {
 		this.setState({ isOpen: false });
@@ -27,7 +28,7 @@ class DropDown extends Component {
 				{
 					isOpen
 					&& <div className={s.commonDropDown}>
-						{items.map(({ text }, i) => <div key={i}>{text}</div>)}
+						{items.map(({ text, link }, i) => <Link href={`${link || '/'}`} onClick={this.toggleDropDown} key={i}>{text}</Link>)}
 					</div>
 				}
 			</div>

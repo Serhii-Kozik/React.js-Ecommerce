@@ -5,7 +5,6 @@ import { get } from '../../functions/fetch';
 import './style.less';
 import { inject, observer } from 'mobx-preact';
 import { hotProducts, chairs, phones } from '../Secondary/data';
-import Footer from '../Footer';
 
 
 export const allItems = { ...chairs, ...phones, ...hotProducts };
@@ -18,7 +17,7 @@ class Index extends Component {
 
 		const getMainData = async () => {
 			try {
-				const mainData = await get('http://localhost:8081/mainData');
+				const mainData = await get('/mainData');
 				console.log('mainData: ', mainData);
 				return this.setState({ highlighted: mainData });
 			} catch (err) {
@@ -36,7 +35,6 @@ class Index extends Component {
 				<Secondary title="Hot Now" items={hotProducts}/>
 				<Secondary title="Vintage's Phone" items={phones}/>
 				<Secondary title="Armchair" items={chairs}/>
-				<Footer />
 				{/*<Secondary title={'Phones'} items={phones}/>*/}
 			</div>
 		);

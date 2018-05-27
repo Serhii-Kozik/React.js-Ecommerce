@@ -1,14 +1,27 @@
+
+const backend = localStorage.getItem('backend') || `http://localhost:8081`;
+
 export const post = (url, data = {}) => {
-	return fetch(url, {
+
+	let headers = {'content-type': 'application/json'}
+	if (localStorage.getItem("token")) headers.Authorization = `Bearer ${localStorage.getItem("token")}`
+
+	return fetch(`${backend}${url}`, {
 		body: JSON.stringify(data), // must match 'Content-Type' header
-		headers: { 'content-type': 'application/json' },
+		headers,
 		method: 'POST', // *GET, POST, PUT, DELETE, etc.
-		mode: 'no-cors', // no-cors, cors, *same-origin
 	})
-		.then(response => response.json()); // parses response to JSON
+		.then(response => response.json()) // parses response to JSON
+		.catch((err) => console.log(err));
 };
 
 export const get = async (url) => {
-	const response = await fetch(url);
+
+	let headers = {cache: "no-cache"}
+	if (localStorage.getItem("token")) headers.Authorization = `Bearer ${localStorage.getItem("token")}`
+
+	const response = await fetch(`${backend}${url}`, {
+		headers
+	});
 	return response.json();
 };

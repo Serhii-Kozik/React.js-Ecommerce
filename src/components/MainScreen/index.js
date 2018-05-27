@@ -10,11 +10,11 @@ class MainScreen extends Component {
 
 	render() {
 		return (
-			<div className={cn(s.mainScreen)} style={{ background: `url(${bg})`, backgroundSize: 'cover' }}>
+			<div className={cn(s.mainScreen)} style={{ background: `url(${bg})`}}>
 				<div className={cn(s.mainScreenTextBlock)}>
 					<div className={cn(s.mainScreenTitle)}>Unique Armchair From The Early 50's</div>
 					<div className={cn(s.mainScreenDescription)}>
-						talk live with the seller bargue about the price and see more furnichers in the shop
+						talk live with the seller find the right price and view more items in the shop
 					</div>
 					<div>
 						<button className={cn(s.basicButton)}>

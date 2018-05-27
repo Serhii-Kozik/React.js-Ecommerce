@@ -3,6 +3,7 @@ import { Link } from 'preact-router';
 import s from './style.less';
 import avatarUrl from './images/avatar.png';
 import DropDown from '../Elements/dropDown/DropDown';
+import { inject, observer } from 'mobx-preact';
 
 const browseItems = [
 	{ text: 'Hot Products' },
@@ -11,25 +12,32 @@ const browseItems = [
 ];
 
 const profileItems = [
-	{ text: 'Profile' },
+	{ text: 'Profile', link: '/login' },
 	{ text: 'Log Out' },
 ];
 
+const LoginButton = () => (
+	<Link className={s.loginButton} href={`/login`}>Login</Link>
+)
+
+@inject('userStore') @observer
 class Header extends Component {
-	render() {
+	render({userStore}, {}) {
+		const loggedIn = !!userStore.store.id;
+		console.log(loggedIn);
 		return (
 			<div className={s.headerBar}>
 				<div className={s.headerContent}>
 					<div className={s.section1}>
 						<div className={s.logo}/>
+						<DropDown items={browseItems}>
+							<div className={s.headerBrowse}>
+								Browse
+								<div className={s.triangleDown}/>
+							</div>
+						</DropDown>
 					</div>
 
-					<DropDown items={browseItems}>
-						<div className={s.headerBrowse}>
-							Browse
-							<div className={s.triangleDown}/>
-						</div>
-					</DropDown>
 
 					<Link href={`/`} className={s.section2}>
 						Happy Interior
@@ -40,16 +48,19 @@ class Header extends Component {
 							<div>Search</div>
 
 						</div>
-						<div className={s.bell}/>
-						<div className={s.headerProfile}>
-							<img src={avatarUrl} alt=""/>
-							<DropDown items={profileItems}>
-								<div className={s.profileName}>
-									Eli
-									<div className={s.triangleDown}/>
-								</div>
-							</DropDown>
-						</div>
+						{loggedIn && <div className={s.bell}/>}
+						{
+							!loggedIn ? <LoginButton /> :
+							<div className={s.headerProfile}>
+								<img src={avatarUrl} alt=""/>
+								<DropDown items={profileItems}>
+									<div className={s.profileName}>
+										Eli
+										<div className={s.triangleDown}/>
+									</div>
+								</DropDown>
+							</div>
+						}
 					</div>
 				</div>
 			</div>

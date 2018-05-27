@@ -4,9 +4,11 @@ import icon1 from './images/1.png';
 import icon2 from './images/2.png';
 import icon3 from './images/3.png';
 import icon4 from './images/4.png';
+import { Link } from 'preact-router';
 
 class Footer extends Component {
-	render() {
+	state = {}
+	render({}, {backendUrl = false}) {
 		return (
 			<div className={s.footerContainer}>
 				<div className={s.imageRow}>
@@ -22,9 +24,12 @@ class Footer extends Component {
 					<div>Jobs</div>
 					<div>Terms of Use</div>
 					<div>Privacy</div>
+					<Link href={`/login`}>Login page</Link>
+					<Link href={`/testGround`}>Components test ground</Link>
 				</div>
 				<div className={s.serviceBtn}>
-					<button>Service Code</button>
+					<button onClick={() => this.setState({backendUrl: !backendUrl})}>Service Code</button>
+					{backendUrl && <div>backend url:<input value={localStorage.getItem('backend')} onInput={e => {localStorage.setItem('backend', e.target.value); this.forceUpdate();}}/></div>}
 				</div>
 				<div className={s.copyRightText}>© 1997-2018 METRO, Inc.</div>
 			</div>

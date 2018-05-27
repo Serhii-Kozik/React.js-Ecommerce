@@ -40,6 +40,7 @@
 .headerBrowse {
   display: flex;
   font-weight: bold;
+  padding: 0 20px;
 }
 
 .logo {
@@ -54,7 +55,7 @@
   height: 30px;
   width: 30px;
   background-size: contain;
-  margin: 0 10px;
+  margin: 0 20px;
   background-repeat: no-repeat;
   background-position: center 4px;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 3 3' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='1.414'%3e%3cpath d='M1.007 2.257a.229.229 0 0 0 .452 0h-.452zM2.285 1.854a.098.098 0 0 1-.098-.098v-.717A.958.958 0 0 0 1.38.094a.16.16 0 1 0-.293-.001.957.957 0 0 0-.817.946v.717a.098.098 0 0 1-.098.098l-.158.014c-.008 0-.014.006-.014.013v.306h2.466v-.306c0-.007-.006-.013-.014-.013l-.167-.014z'/%3e%3c/svg%3e");
@@ -103,8 +104,15 @@
 .section3 {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   height: 40px;
   width: 100/3%;
+}
+
+.loginButton {
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: black;
 }
