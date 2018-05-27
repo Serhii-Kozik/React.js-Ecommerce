@@ -9,16 +9,20 @@ class DropDown extends Component {
 	}
 
 	toggleDropDown = () => {
-		this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
-	};
+		this.setState({ isOpen: !this.state.isOpen });
+	}
+
+	toggleOff = () => {
+		this.setState({ isOpen: false });
+	}
 
 	render({ className, children, items }) {
 		const { isOpen } = this.state;
 		return (
 			<div className={cn(s.dropDownContainer, className)}
 					 tabIndex="0"
-					 onBlur={this.toggleDropDown}
-					 onFocus={this.toggleDropDown}>
+					 onBlur={this.toggleOff}
+					 onClick={this.toggleDropDown}>
 				{children}
 				{
 					isOpen
