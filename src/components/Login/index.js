@@ -59,19 +59,19 @@ class LoginBox extends Component {
 				{userStore.store.id ? LoggedIn({userStore: userStore.store}) :
 					(
 						userStore.store.fetchingUserData ? <p>Logged in!</p> :
-							<form onSubmit={this.submit}>
-								<p className={s.layout}>
-									<p><input type={`email`} value={email} onInput={e => this.setState({email: e.target.value})} className={s.inputGroup} placeholder={'Happy Interior'} size={35} style={{ marginTop: 57 }} /></p>
-									<p><input type={`password`} value={password} onInput={e => this.setState({password: e.target.value})} className={s.inputGroup} placeholder={'Password'} size={35} /></p>
-									<p>
-										<button onClick={this.submit} className={s.loginButton}>Login</button>
-										<input type={`submit`} style={{display: 'none'}}/>
-									</p>
-								</p>
+							<form onSubmit={this.submit} className={`${s.wrapper}`}>
+								<input type={`submit`} style={{display: 'none'}}/>
+								<div className={s.layout}>
+									<h2>Login</h2>
+									<input type={`email`} value={email} onInput={e => this.setState({email: e.target.value})} className={s.inputGroup} placeholder={'Email'}/>
+									<input type={`password`} value={password} onInput={e => this.setState({password: e.target.value})} className={s.inputGroup} placeholder={'Password'}/>
+									<div className={`${s.buttonWrapper}`}>
+										<div onClick={this.submit} className={s.loginButton}>Login</div>
+									</div>
+								</div>
 							</form>
 					)
 				}
-				{JSON.stringify(userStore.store)}
 			</div>
 		);
 	}

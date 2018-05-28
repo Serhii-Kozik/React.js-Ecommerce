@@ -14,7 +14,7 @@ class DropDown extends Component {
 	};
 
 	toggleOff = () => {
-		this.setState({ isOpen: false });
+		// this.setState({ isOpen: false });
 	}
 
 	render({ className, children, items }) {
