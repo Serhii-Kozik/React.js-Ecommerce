@@ -16,18 +16,18 @@ import hotProduct5 from './hotProducts/5.png';
 import hotProduct6 from './hotProducts/6.png';
 
 export const chairs = {
-	2: { image: chair1 },
-	3: { image: chair2 },
-	4: { image: chair3 },
-	5: { image: chair4 },
-	6: { image: chair5 }
+	2: { image: chair1, info: 'Hand Made Arm-chair', price: '2,300$' },
+	3: { image: chair2, info: 'Hand Made Arm-chair', price: '2,300$' },
+	4: { image: chair3, info: 'Hand Made Arm-chair', price: '2,300$' },
+	5: { image: chair4, info: 'Hand Made Arm-chair', price: '2,300$' },
+	6: { image: chair5, info: 'Hand Made Arm-chair', price: '2,300$' }
 };
 export const phones = {
-	7: { image: phone1 },
-	8: { image: phone2 },
-	9: { image: phone3 },
-	10: { image: phone4 },
-	11: { image: phone5 }
+	7: { image: phone1, info: 'Phone', price: '100$' },
+	8: { image: phone2, info: 'Phone', price: '200$' },
+	9: { image: phone3, info: 'Phone', price: '300$' },
+	10: { image: phone4, info: 'Phone', price: '400$' },
+	11: { image: phone5, info: 'Phone', price: '500$' }
 };
 
 export const hotProducts = {
