@@ -1,15 +1,17 @@
 
-const backend = localStorage.getItem('backend') || `http://localhost:8081`;
+const getBackend = () => localStorage.getItem('backend') || `http://localhost:8081`;
 
 export const post = (url, data = {}) => {
 
-	let headers = {'content-type': 'application/json'}
-	if (localStorage.getItem("token")) headers.Authorization = `Bearer ${localStorage.getItem("token")}`
+	const backend = getBackend();
+
+	let headers = {'content-type': 'application/json'};
+	if (localStorage.getItem("token")) headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
 
 	return fetch(`${backend}${url}`, {
-		body: JSON.stringify(data), // must match 'Content-Type' header
+		body: JSON.stringify(data),
 		headers,
-		method: 'POST', // *GET, POST, PUT, DELETE, etc.
+		method: 'POST'
 	})
 		.then(response => response.json()) // parses response to JSON
 		.catch((err) => console.log(err));
@@ -17,8 +19,10 @@ export const post = (url, data = {}) => {
 
 export const get = async (url) => {
 
-	let headers = {cache: "no-cache"}
-	if (localStorage.getItem("token")) headers.Authorization = `Bearer ${localStorage.getItem("token")}`
+	const backend = getBackend();
+
+	let headers = {cache: "no-cache"};
+	if (localStorage.getItem("token")) headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
 
 	const response = await fetch(`${backend}${url}`, {
 		headers

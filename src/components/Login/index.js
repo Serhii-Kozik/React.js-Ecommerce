@@ -1,8 +1,12 @@
 import { h, Component } from 'preact';
+import { Link } from 'preact-router';
 import { inject, observer } from 'mobx-preact';
 import s from './style.less';
+import sGlobal from '../style/sGlobal.less';
 import { post, get } from '../../functions/fetch';
 import { setUserStore } from '../../App';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 
 export const fetchUserData = async (userStore) => {
 	if(!userStore.fetchingUserData) {
@@ -22,11 +26,16 @@ const logout = () => {
 }
 
 const LoggedIn = ({userStore = {} }) => (
-	<div>
-		<p>Logged in as {userStore.name}</p>
-		<p>
-			<div style={{color: 'gray', fontWeight: 'bold'}} onClick={logout}>Logout</div>
-		</p>
+	<div style={{display: 'flex', justifyContent: 'center', minHeight: '100vh'}}>
+		<div className={`${s.limitWidth}`}>
+			<p>Hi {userStore.name}</p>
+			<p>
+				<Link href={'/myStores'} className={`${sGlobal.btn}`}>My stores</Link>
+			</p>
+			<p>
+				<div className={`${sGlobal.btn}`} onClick={logout}>Logout</div>
+			</p>
+		</div>
 	</div>
 )
 
@@ -49,10 +58,12 @@ class LoginBox extends Component {
 
 				fetchUserData(this.props.userStore.store);
 
+			} else {
+				if(res.errors) this.setState({errors: res.errors})
 			}
 		};
 	}
-	render ({userStore},{email = '', password = ''}) {
+	render ({userStore},{email = '', password = '', errors = []}) {
 
 		return (
 			<div>
@@ -68,6 +79,9 @@ class LoginBox extends Component {
 									<div className={`${s.buttonWrapper}`}>
 										<div onClick={this.submit} className={s.loginButton}>Login</div>
 									</div>
+									{!isEmpty(errors) && map(errors, (v, k) => (
+										<p key={k}>-{v}</p>
+									))}
 								</div>
 							</form>
 					)

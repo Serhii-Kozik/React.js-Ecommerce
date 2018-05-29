@@ -7,14 +7,14 @@ import LiveChat from './components/LiveChat';
 import Header from './components/Header';
 import Login, {fetchUserData} from './components/Login';
 import Store from './components/Store';
-import TestGround from './components/TestGround';
+import MyStores from './components/MyStores';
 import './App.css';
 import {Router} from 'preact-router';
 import Footer from './components/Footer';
 
 
 if (!localStorage.getItem('backend'))
-	localStorage.setItem('backend', '165.227.166.168:8081');
+	localStorage.setItem('backend', 'http://165.227.166.168:8081');
 
 let liveChat = observable({store: {live: false}});
 export const setLiveChat = (data) => liveChat.store = data;
@@ -29,7 +29,7 @@ class App extends Component {
 		if (localStorage.getItem('token'))
 			fetchUserData(userStore);
 	}
-	render () {		
+	render () {
 		return (
 			<Provider liveChat={liveChat} userStore={userStore}>
 				<div>
@@ -37,7 +37,7 @@ class App extends Component {
 					<Router>
 						<Index path={'/'} />
 						<Login path={'/login'} />
-						<TestGround path={'/testGround'} />
+						<MyStores path={'/myStores'} />
 						<ItemZoom path={`/item/:id`} />
 						<Store path={`/store/:id`} />
 					</Router>

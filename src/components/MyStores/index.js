@@ -23,15 +23,16 @@ class MyStores extends Component {
 
 		this.submit = async (e) => {
 			e.preventDefault();
+
 			const data = {
 				name: this.state.name,
 			};
 			const res = await post(`/store/create`, data);
 
-			setUserStore({store: {
+			setUserStore({
 				...this.props.userStore.store,
-					userStores: res.userStores
-				}})
+				userStores: res.userStores
+			});
 		};
 
 
@@ -47,6 +48,7 @@ class MyStores extends Component {
 
 	}
 	render ({userStore},{name = ''}) {
+
 
 		if (!userStore.store.id) return (
 			<div>
@@ -72,18 +74,21 @@ class MyStores extends Component {
 							</div>
 					}
 				</div>
-				<div className={`${s.boxBorder} ${s.createStore}`}>
-					<h2>Create a new store</h2>
-					<form onSubmit={this.submit}>
-						<input type={`submit`} style={{display: 'none'}} />
-						<div className={`${s.form}`}>
-							<span className={`${s.image}`}><img src={plus} /></span>
-							<input type={`text`} value={name} onInput={e => this.setState({name: e.target.value})} placeholder={"Store name"}/>
-						</div>
+				{
+					isEmpty(userStore.store.userStores) &&
+					<div className={`${s.boxBorder} ${s.createStore}`}>
+						<h2>Create a new store</h2>
+						<form onSubmit={this.submit}>
+							<input type={`submit`} style={{display: 'none'}} />
+							<div className={`${s.form}`}>
+								<span className={`${s.image}`}><img src={plus} /></span>
+								<input type={`text`} value={name} onInput={e => this.setState({name: e.target.value})} placeholder={"Store name"}/>
+							</div>
 
-						<div onClick={this.submit} className={s.createButton}><img src={plus} /></div>
-					</form>
-				</div>
+							<div onClick={this.submit} className={s.createButton}><img src={plus} /></div>
+						</form>
+					</div>
+				}
 			</div>
 		);
 	}

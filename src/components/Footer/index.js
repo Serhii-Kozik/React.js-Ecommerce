@@ -24,8 +24,6 @@ class Footer extends Component {
 					<div>Jobs</div>
 					<div>Terms of Use</div>
 					<div>Privacy</div>
-					<Link href={`/login`}>Login page</Link>
-					<Link href={`/testGround`}>Components test ground</Link>
 				</div>
 				<div className={s.serviceBtn}>
 					<button onClick={() => this.setState({backendUrl: !backendUrl})}>Service Code</button>
